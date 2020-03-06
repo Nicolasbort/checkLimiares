@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    int MINBLUE = 0;
-    int MAXBLUE = 255;
+    int MINHUE = 0;
+    int MAXHUE = 255;
 
     int MINSAT = 0;
     int MAXSAT = 255;
@@ -31,8 +31,8 @@ int main(int argc, char* argv[])
     int MAXVAL = 255;
 
 
-    printf("MAXVALUES:\nH: %d  S: %d  V: %d\n", MAXBLUE, MAXSAT, MAXVAL);
-    printf("MINVALUES:\nH: %d  S: %d  V: %d\n", MINBLUE, MINSAT, MINVAL);
+    printf("MAXVALUES:\nH: %d  S: %d  V: %d\n", MAXHUE, MAXSAT, MAXVAL);
+    printf("MINVALUES:\nH: %d  S: %d  V: %d\n", MINHUE, MINSAT, MINVAL);
 
 
     cvtColor(mainImg, mainImg, COLOR_BGR2HSV);
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     while (true)
     {
 
-        inRange(mainImg, Scalar(MINBLUE, MINSAT, MINVAL), Scalar(MAXBLUE, MAXSAT, MAXVAL), img_C1);
+        inRange(mainImg, Scalar(MINHUE, MINSAT, MINVAL), Scalar(MAXHUE, MAXSAT, MAXVAL), img_C1);
         
         imshow("", img_C1);
 
@@ -52,11 +52,11 @@ int main(int argc, char* argv[])
         switch (key)
         {
         case 113:               // q
-            MINBLUE += 5;
+            MINHUE += 5;
             break;
 
         case 97:                // a
-            MINBLUE -= 5;
+            MINHUE -= 5;
             break;
             
         case 119:               // w
@@ -78,11 +78,11 @@ int main(int argc, char* argv[])
         ////////// UP VALUES ///////
 
         case 116:               // t
-            MAXBLUE += 5;
+            MAXHUE += 5;
             break;
             
         case 103:               // g
-            MAXBLUE -= 5;
+            MAXHUE -= 5;
             break;
             
         case 121:               // y
@@ -108,8 +108,8 @@ int main(int argc, char* argv[])
         if (key > 0)
         {
             cout << "\033[2J\033[1;1H";
-            printf("\nMAXVALUES:   H: %d  S: %d  V: %d\n\n", MAXBLUE, MAXSAT, MAXVAL);
-            printf("MINVALUES:   H: %d  S: %d  V: %d\n", MINBLUE, MINSAT, MINVAL);
+            printf("\nMAXVALUES:   H: %d  S: %d  V: %d\n\n", MAXHUE, MAXSAT, MAXVAL);
+            printf("MINVALUES:   H: %d  S: %d  V: %d\n", MINHUE, MINSAT, MINVAL);
         }
     }
 }
